@@ -1,5 +1,7 @@
 apply plugin: 'java'
 
-task helloWorld << {
+task helloWorld
+
+helloWorld << {
     println("Hello world")
 }
