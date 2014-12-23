@@ -1,6 +1,22 @@
 apply plugin: 'java'
 
+
+task compile (type: JavaCompile) {
+    source = sourceSets.main.java.srcDirs
+    //include 'com/palvair/gradle/HelloWorld.java'
+    classpath = sourceSets.main.compileClasspath
+    destinationDir = sourceSets.main.output.classesDir
+}
+
+task customJar(type : Jar) {
+    dependsOn 'compile'
+    archiveName = 'hello.jar'
+    destinationDir = file("${buildDir}/jars")
+    from  sourceSets.main.output.classesDir
+}
+
 task copyFiles(type : Copy) {
+    dependsOn 'customJar'
     from 'in'
     into 'out'
     include '**/*.txt'
