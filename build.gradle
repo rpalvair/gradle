@@ -29,3 +29,5 @@ task helloWorld(dependsOn: display) {
 helloWorld << {
     println("Hello world")
 }
+
+helloWorld.enabled = false;
