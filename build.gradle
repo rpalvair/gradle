@@ -1,6 +1,21 @@
 apply plugin: 'java'
 
-task helloWorld
+task callLogger << {
+    logging.level = 'DEBUG'
+    logger.debug("logger plugin called");
+}
+
+task display {
+    dependsOn 'callLogger'
+}
+
+display << {
+    println("Display")
+}
+
+task helloWorld(dependsOn: display) {
+
+}
 
 helloWorld << {
     println("Hello world")
