@@ -1,0 +1,1 @@
+This file will be copied in 'out' folder

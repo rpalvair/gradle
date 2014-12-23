@@ -1,6 +1,16 @@
 apply plugin: 'java'
 
-task callLogger << {
+task copyFiles(type : Copy) {
+    from 'in'
+    into 'out'
+    include '**/*.txt'
+}
+
+task callLogger {
+    dependsOn 'copyFiles'
+}
+
+callLogger << {
     logging.level = 'DEBUG'
     logger.debug("logger plugin called");
     logger.debug("JAVA_HOME = " + System.getenv('JAVA_HOME'))
