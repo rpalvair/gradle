@@ -3,10 +3,19 @@ apply plugin: 'java'
 task callLogger << {
     logging.level = 'DEBUG'
     logger.debug("logger plugin called");
+    logger.debug("JAVA_HOME = " + System.getenv('JAVA_HOME'))
 }
 
 task display {
     dependsOn 'callLogger'
+}
+
+display {}.doFirst {
+    println("do First(display)")
+}
+
+display {}.doLast {
+    println("do Last(display)")
 }
 
 display << {
